@@ -47,7 +47,7 @@ export default async function Home() {
           <p className="text-sm opacity-80 mt-1">Obtained when accessing:</p>
           <ul className="text-sm opacity-80 mt-1 list-decimal  list-inside">
             <li>middleware.tsx (EdgeMiddleware)</li>
-            <li>page.tsx (I think its a Server Function)</li>
+            <li>page.tsx (RSC_Fetch)</li>
             <li>Rendering</li>
           </ul>
         </div>
@@ -65,17 +65,17 @@ export default async function Home() {
           incorrect
         </p>
         <div>
-          <h2 className="text-xl font-bold">By ServerFunction(runtime:nodejs)</h2>
+          <h2 className="text-xl font-bold">By RSC_Fetch(runtime:nodejs)</h2>
           <p className="text-sm opacity-80 mt-1">
             When accessing the server and executing the API:
           </p>
           <ul className="text-sm opacity-80 mt-1 list-decimal  list-inside">
-            <li>page.tsx (I think its a Server Function)</li>
+            <li>page.tsx (RSC_Fetch)</li>
             <p className="pl-5">- execute api(fetch) -</p>
             <li>
               middleware.tsx (I thought it was Edge Middleware, but its not)
             </li>
-            <li>api/route.tsx (I think its a Server Function in Node.js)</li>
+            <li>api/route.tsx (on Nodejs)</li>
             <li>Rendering</li>
           </ul>
         </div>
@@ -93,17 +93,17 @@ export default async function Home() {
           incorrect
         </p>
         <div>
-          <h2 className="text-xl font-bold">By ServerFunction(runtime:edge)</h2>
+          <h2 className="text-xl font-bold">By RSC_Fetch(runtime:edge)</h2>
           <p className="text-sm opacity-80 mt-1">
             When accessing the server and executing the API:
           </p>
           <ul className="text-sm opacity-80 mt-1 list-decimal  list-inside">
-            <li>page.tsx (I think its a Server Function)</li>
+            <li>page.tsx (RSC_Fetch)</li>
             <p className="pl-5">- execute api(fetch) -</p>
             <li>
               middleware.tsx (I thought it was Edge Middleware, but its not)
             </li>
-            <li>api/route.tsx (I think its a Server Function in edge)</li>
+            <li>api/route.tsx (on Nodejs)</li>
             <li>Rendering</li>
           </ul>
         </div>

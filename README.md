@@ -2,7 +2,7 @@
 
 Please check the following URL:
 
-https://23132131.2
+[https://ip-test-next.vercel.app/](https://ip-test-next.vercel.app/)
 
 ---
 

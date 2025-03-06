@@ -30,7 +30,7 @@ export default async function Home() {
   };
 
   // ChangeUrl To OwnServerUrl
-  const baseUrl = "http://host.docker.internal:8092";
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const nodeRes = await fetch(`${baseUrl}/api/nodejs`, { cache: "no-store" });
   const nodeData: ResponceType = await nodeRes.json();
   const edgeRes = await fetch(`${baseUrl}/api/edge`, { cache: "no-store" });

@@ -1,11 +1,14 @@
 // import Image from "next/image";
 import { headers } from "next/headers";
 import ClientFetchComponent from "./ClientFetchComponent";
+import { cookies } from "next/headers";
+
 interface IpListType {
   "x-forwarded-for"?: string | null;
   "x-real-ip"?: string | null;
   "x-vercel-forwarded-for"?: string | null;
   req_ip?: string | null;
+  cookie_ip?: string | null;
 }
 interface ResponceType {
   api: IpListType;
@@ -13,12 +16,19 @@ interface ResponceType {
 }
 
 export default async function Home() {
+  const cookieStore = cookies();
+  const ipCookie = cookieStore.get("test")?.value;
+  const allCookie = cookieStore
+      .getAll()
+      .map(cookie => `${cookie.name}=${cookie.value}`)
+      .join(";");
   const currentHeaders = headers();
-  const accessIps = {
+  const accessIps:ResponceType = {
     api: {
       "x-forwarded-for": currentHeaders.get("x-forwarded-for"),
       "x-real-ip": currentHeaders.get("x-real-ip"),
       "x-vercel-forwarded-for": currentHeaders.get("x-vercel-forwarded-for"),
+      cookie_ip: ipCookie ?? ""
     },
     middleware: {
       "x-forwarded-for": currentHeaders.get("x-middle-forwarded-for"),
@@ -26,14 +36,19 @@ export default async function Home() {
       "x-vercel-forwarded-for": currentHeaders.get(
         "x-middle-vercel-forwarded-for"
       ),
+      cookie_ip: ipCookie ?? ""
     },
   };
 
   // ChangeUrl To OwnServerUrl
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-  const nodeRes = await fetch(`${baseUrl}/api/nodejs`, { cache: "no-store" });
+  const nodeRes = await fetch(`${baseUrl}/api/nodejs`, { cache: "no-store",  headers: {
+    "Cookie": allCookie
+  }, },);
   const nodeData: ResponceType = await nodeRes.json();
-  const edgeRes = await fetch(`${baseUrl}/api/edge`, { cache: "no-store" });
+  const edgeRes = await fetch(`${baseUrl}/api/edge`, { cache: "no-store",  headers: {
+    "Cookie": allCookie
+  }, });
   const edgeData: ResponceType = await edgeRes.json();
 
   return (

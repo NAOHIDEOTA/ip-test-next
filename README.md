@@ -4,13 +4,11 @@ Please check the following URL:
 
 [https://ip-test-next.vercel.app/](https://ip-test-next.vercel.app/)
 
----
 
 ## Request
 
 I want to ensure that the correct IP address is obtained when executing fetch from a RSC_Fetch.
 
----
 
 ## Why
 
